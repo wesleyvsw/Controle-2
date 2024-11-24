@@ -40,5 +40,28 @@ disp(sys_sym);
 y_t = ilaplace(sys_sym, s, t);
 
 %Colocando tudo com 3 algarismos significativos
-vpa(y_t,3)
+vpa(y_t,3);
+%Plotando a resposta ao degrau
+t = 0:0.01:10;   % Vetor de tempo
+step(ft_1 + ft_2, t);    % Calculando e plotando a resposta ao degrau
+xlabel('Tempo (s)');
+ylabel('Saída');
+title('Resposta ao Degrau de uma Função de Transferência');
+grid on;
 
+%Observabilidade e Controlabilidade
+%Controlabilidade
+ctrb(A,b1);
+rank(ctrb(A,b1));
+ctrb(A,b2);
+rank(ctrb(A,b2));
+%Observabilidade
+c1 = [1 0 0];
+c2 = [0 1 0];
+c3 = [0 0 1];
+obsv(A,c1)
+obsv(A,c2)
+obsv(A,c3)
+rank(obsv(A,c1))
+rank(obsv(A,c2))
+rank(obsv(A,c3))
